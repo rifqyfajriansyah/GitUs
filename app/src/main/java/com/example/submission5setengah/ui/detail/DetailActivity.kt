@@ -29,11 +29,11 @@ class DetailActivity : AppCompatActivity() {
 
     @Inject
     lateinit var factory: ViewModelFactory
-    lateinit var detailKu: DetailKu
-    lateinit var userInfo: UserKu
-    lateinit var icon : MenuItem
+    private lateinit var detailKu: DetailKu
+    private lateinit var userInfo: UserKu
+    private lateinit var icon : MenuItem
 
-    var paramLove = 0
+    private var paramLove = 0
 
     private val viewModel: DetailViewModel by viewModels {
         factory
@@ -48,7 +48,7 @@ class DetailActivity : AppCompatActivity() {
         supportActionBar?.title = TITLE
         supportActionBar?.elevation = 0f
 
-        userInfo = intent.getParcelableExtra<UserKu>(EXTRA_DATA)!!
+        userInfo = intent.getParcelableExtra(EXTRA_DATA)!!
         viewModel.getDetail(userInfo.username).observe(this){ result ->
             if (result != null) {
                 when (result) {
@@ -103,7 +103,7 @@ class DetailActivity : AppCompatActivity() {
 
             R.id.action_share -> {
                 val shareIntent = Intent(Intent.ACTION_SEND)
-                shareIntent.setType("text/plain")
+                shareIntent.type = "text/plain"
                 shareIntent.setPackage("com.whatsapp")
                 shareIntent.putExtra(Intent.EXTRA_TEXT, "Cek deh profil "+detailKu.name+" mempunyai "+detailKu.follower+" follower  dan  "+detailKu.following+" following")
 

@@ -19,11 +19,17 @@ class DetailViewModel @Inject constructor(private val repo: UserUseCase): ViewMo
 
     fun addFavo(userKu: UserKu, param: Int) {
 
-        if (param == 0) {
-            repo.insertFavo(userKu)
-        } else {
-            repo.deleteFavo(userKu.username)
+        viewModelScope.launch {
+
+            if (param == 0) {
+                repo.insertFavo(userKu)
+            } else {
+                repo.deleteFavo(userKu.username)
+            }
+
         }
+
+
 
     }
 }

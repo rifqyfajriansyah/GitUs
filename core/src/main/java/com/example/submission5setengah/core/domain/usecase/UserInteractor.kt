@@ -9,17 +9,17 @@ import javax.inject.Inject
 
 class UserInteractor @Inject constructor(private val repo: IntUserRepo): UserUseCase {
 
-    override fun getListUser(value: String, valueP: Int): Flow<com.example.submission5setengah.core.data.Resource<List<UserKu>>> = repo.getListUser(value, valueP)
+    override fun getListUser(value: String, valueP: Int): Flow<Resource<List<UserKu>>> = repo.getListUser(value, valueP)
 
-    override fun getDetailUser(value: String): Flow<com.example.submission5setengah.core.data.Resource<DetailKu>> = repo.getDetailUser(value)
+    override fun getDetailUser(value: String): Flow<Resource<DetailKu>> = repo.getDetailUser(value)
 
-    override fun getListFollow(value: String, valueP: Int): Flow<com.example.submission5setengah.core.data.Resource<List<UserKu>>> = repo.getListFollow(value, valueP)
+    override fun getListFollow(value: String, valueP: Int): Flow<Resource<List<UserKu>>> = repo.getListFollow(value, valueP)
 
     override fun getStatFav(value: String): Flow<List<UserKu>> = repo.getStatFav(value)
 
-    override fun insertFavo(value: UserKu) = repo.insertFavo(value)
+    override suspend fun insertFavo(value: UserKu) = repo.insertFavo(value)
 
-    override fun deleteFavo(value: String) = repo.deleteFavo(value)
+    override suspend fun deleteFavo(value: String) = repo.deleteFavo(value)
 
 
 }

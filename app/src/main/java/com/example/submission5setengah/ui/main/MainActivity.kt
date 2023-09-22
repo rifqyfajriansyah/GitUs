@@ -2,6 +2,7 @@ package com.example.submission5setengah.ui.main
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -82,9 +83,6 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_listlove ->{
-                //val intent = Intent(this, FavoritActivity::class.java)
-                //startActivity(intent)
-
                 val uri = Uri.parse("submission5setengah://favorite")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
@@ -113,5 +111,20 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+
     }
+
+    override fun onBackPressed() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q &&
+            isTaskRoot &&
+            (supportFragmentManager.primaryNavigationFragment?.childFragmentManager?.backStackEntryCount
+                ?: 0) == 0 &&
+            supportFragmentManager.backStackEntryCount == 0
+        ) {
+            finishAfterTransition()
+        } else {
+            super.onBackPressed()
+        }
+    }
+
 }

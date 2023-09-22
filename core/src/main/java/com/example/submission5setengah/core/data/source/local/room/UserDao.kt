@@ -16,9 +16,9 @@ interface UserDao {
     fun getUser(username:String): Flow<List<UserEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertUser(users: UserEntity)
+    suspend fun insertUser(users: UserEntity)
 
     @Query("DELETE FROM userku WHERE username = :username")
-    fun deleteUserFav(username: String)
+    suspend fun deleteUserFav(username: String)
 
 }

@@ -7,16 +7,16 @@ import kotlinx.coroutines.flow.Flow
 
 interface IntUserRepo {
 
-    fun getListUser(value:String, valueP:Int =0): Flow<com.example.submission5setengah.core.data.Resource<List<UserKu>>>
+    fun getListUser(value:String, valueP:Int =0): Flow<Resource<List<UserKu>>>
 
-    fun getDetailUser(value: String) : Flow<com.example.submission5setengah.core.data.Resource<DetailKu>>
+    fun getDetailUser(value: String) : Flow<Resource<DetailKu>>
 
-    fun getListFollow(value:String, valueP:Int): Flow<com.example.submission5setengah.core.data.Resource<List<UserKu>>>
+    fun getListFollow(value:String, valueP:Int): Flow<Resource<List<UserKu>>>
 
     fun getStatFav(value: String) : Flow<List<UserKu>>
 
-    fun insertFavo(value: UserKu)
+    suspend fun insertFavo(value: UserKu)
 
-    fun deleteFavo(value: String)
+    suspend fun deleteFavo(value: String)
 
 }
